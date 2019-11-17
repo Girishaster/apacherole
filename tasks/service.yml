@@ -1,0 +1,7 @@
+---
+- name: enable_service {{ service_name }}
+  service: 
+    name: "{{ service_name }}"
+    state: restarted
+    enabled: true 
+

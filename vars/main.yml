@@ -1,0 +1,7 @@
+---
+# vars file for apacherole
+#
+
+webpack:
+    - httpd
+    - httpd-tools

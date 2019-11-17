@@ -1,0 +1,4 @@
+---
+# defaults file for apacherole
+
+service_name: httpd

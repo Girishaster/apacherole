@@ -1,0 +1,7 @@
+---
+# handlers file for apacherole
+- name: restart_apache
+  service: 
+    name: httpd 
+    state: restarted 
+

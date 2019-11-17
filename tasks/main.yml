@@ -1,0 +1,40 @@
+---
+# tasks file for apacherole
+
+- name: apache_package_install {{ item }} {{ webpack }} 
+  tags: web_tag
+  yum: 
+    name: "{{ item }}" 
+    state: present 
+ #  download_only: true 
+ #  enablerepo: docker
+ #  disablerepo: 
+  with_items:
+       - "{{ webpack }}"
+  register: webpackresult 
+#  delegate_to: ansible_hostname in groups['webservers']
+
+- name: 
+  copy:
+    src: index.html 
+    dest: /var/www/html/ 
+    owner: root 
+    group: root 
+    mode: 0664
+  notify: restart_apache
+
+- name: template_call
+  tags: template_tag 
+  template: {src: apache.j2, dest: '/etc/httpd/conf.d/"{{ ansible_hostname }}".conf'}
+  notify: 
+     - restart_apache
+      
+# - name: external service  {{ service_name }}
+#   include: service.yml 
+
+- name: result 
+  debug: msg="Succexxfully installed apache web services"
+
+   
+      
+
